@@ -35,4 +35,8 @@ userRouter.post("/login", (req, res) => {
         })
 })
 
+userRouter.get("/logout", (req, res) => {
+    req.session.destroy();
+    res.send("Buh-bye");
+})
 module.exports = userRouter;
