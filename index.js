@@ -1,7 +1,10 @@
+require("dotenv").config();
 const express = require("express");
+const cors = require("cors");
 
 const userRouter = require("./users/users-routes");
 const snowboardRouter = require("./snowboarding/snowboard-routes");
+
 
 const server = express();
 
@@ -26,10 +29,11 @@ const sessionConfiguration = {
     })
 }
 
-const port = 1313;
+const port = process.env.PORT;
 
 server.use(session(sessionConfiguration));
 server.use(express.json());
+server.use(cors());
 
 server.use("/api", userRouter);
 server.use("/api/mountains", snowboardRouter);
