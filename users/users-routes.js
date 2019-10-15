@@ -18,13 +18,21 @@ userRouter.post("/register", (req, res) => {
 })
 
 userRouter.post("/login", (req, res) => {
-    let { username, password } = req.body;
-    Users.findBy({ username})
+    let { name, password } = req.body;
+    Users.findBy({ name })
         .first()
         .then(user => {
-            res.status(200).json({ message: "Hey there!!!"})
+            if (user && bcrypt.compareSync(password, user.password)) {
+                req.session.user = user.name;
+                res.status(200).json({ message: "Hey there!!!"})
+            } else {
+                res.status(401).json({ message: "We don't recognize your secret handshake."})
+            }
+
         })
-        .catch({ message: "We don't recognize your secret handshake."})
+        .catch(err => {
+            res.status(500).json({ message: "Sorry. It's a rough day for all of us."})
+        })
 })
 
 module.exports = userRouter;
