@@ -1,4 +1,6 @@
 // Update with your config settings.
+require("dotenv").config();
+
 const dbConnection = process.env.DATABASE_URL;
 
 module.exports = {
@@ -24,7 +26,6 @@ module.exports = {
   production: {
     client: 'pg',
     connection: dbConnection,
-    useNullAsDefault: true,
     migrations: {
       directory: "./data/migrations"
     },
@@ -32,10 +33,9 @@ module.exports = {
       directory: ".data/seeds"
     },
     pool: {
-      afterCreate: (conn, done) => {
-        conn.run("PRAGMA foreign_keys = ON", done)
-      }
-    }    
+      min: 2, 
+      max: 10
+    }   
   }
 
 

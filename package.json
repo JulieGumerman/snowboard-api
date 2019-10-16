@@ -20,10 +20,11 @@
     "express-session": "^1.17.0",
     "knex": "^0.19.5",
     "node": "^12.12.0",
-    "sqlite3": "^4.1.0"
+    "sqlite3": "^4.1.0",
+    "pg": "^7.12.1"
   },
   "devDependencies": {
-    "nodemon": "^1.19.3",
-    "pg": "^7.12.1"
+    "nodemon": "^1.19.3"
+
   }
 }
