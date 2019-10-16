@@ -1,7 +1,7 @@
 // Update with your config settings.
 require("dotenv").config();
 
-const dbConnection = process.env.DATABASE_URL;
+const dbConnection = process.env.DATABASE_URL || "postgres://postgres@localhost:5432/postgres";
 
 module.exports = {
 
