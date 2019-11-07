@@ -12,26 +12,10 @@ const session = require("express-session");
 const KnexSessionsStore = require("connect-session-knex")(session);
 const knexConfig = require("./data/dbconfig");
 
-const sessionConfiguration = {
-    name: "helloz",
-    secret: "never tellin",
-    cookie: {
-        httpOnly: false,
-        maxAge: 1000 * 60 * 60,
-        secure: false
-    },
-    resave: false,
-    saveUninitialized: false,
-    store: new KnexSessionsStore({
-        knex: knexConfig,
-        createtable: true, 
-        clearInterval: 1000 * 60 * 30
-    })
-}
+
 
 const port = process.env.PORT;
 
-server.use(session(sessionConfiguration));
 server.use(express.json());
 server.use(cors());
 
