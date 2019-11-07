@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const cors = require("cors");
 
@@ -8,7 +10,8 @@ server.use(cors());
 
 server.use(express.json());
 
-server.listen(8000, () => {
+const port=process.env.PORT
+server.listen(port, () => {
     console.log("it's alive");
 })
 
